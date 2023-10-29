@@ -1,8 +1,6 @@
 const express = require("express");
 const policy = require("../models/policy");
-const policies = require("../models/orders");
 
-// business logic here
 const createPolicy = (req, res) => {
     // policy data in body
     const newPolicy = new policy(req.body);

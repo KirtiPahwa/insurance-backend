@@ -5,17 +5,18 @@ const orderSchema = mongoose.Schema(
         // take order model reference
         userId: {
             type: String,
-            required: true,
+            required: true
         },
         policy: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
-            ref: "policy",
+            ref: "policy"
         },
         policyStatus: {
             type: String,
-            required: true,
-        },
+            default: "pending",
+            required: true
+        }
     }
 )
 

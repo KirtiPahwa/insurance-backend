@@ -1,7 +1,7 @@
 const orders = require("../models/orders.js")
 
 // create policy for admin side
-const getAllorders = (req, res) => {
+const getAllClaims = (req, res) => {
     orders.find().exec((err, orders) => {
         if (err) {
             return res.status(400).json({
@@ -13,7 +13,7 @@ const getAllorders = (req, res) => {
 }
 
 // accept a policy claim
-const acceptPolicy = (req, res) => {
+const acceptClaim = (req, res) => {
     // find policy by id using params
     const policyId = req.params.policyId;
     // search policy in db
@@ -21,7 +21,7 @@ const acceptPolicy = (req, res) => {
 
     policy.staus = "accepted";
 
-    orders.save((err, updatedPolicy) => {
+    policy.save((err, updatedPolicy) => {
         if (err) {
             return res.status(400).json({
                 error: "Failed to accept policy"
@@ -32,7 +32,7 @@ const acceptPolicy = (req, res) => {
 }
 
 // reject a policy claim
-const rejectPolicy = (req, res) => {
+const rejectClaim = (req, res) => {
 
     // find policy by id using params
     const policyId = req.params.policyId;
@@ -41,7 +41,7 @@ const rejectPolicy = (req, res) => {
 
     policy.staus = "rejected";
 
-    orders.save((err, updatedPolicy) => {
+    policy.save((err, updatedPolicy) => {
         if (err) {
             return res.status(400).json({
                 error: "Failed to reject policy"
@@ -51,4 +51,4 @@ const rejectPolicy = (req, res) => {
     });
 }
 
-module.exports = { getAllorders, acceptPolicy, rejectPolicy };
+module.exports = { getAllClaims, acceptClaim, rejectClaim };
