@@ -15,5 +15,4 @@ const createPolicy = (req, res) => {
     });
 }
 
-
-module.exports = { createPolicy};
+module.exports = { createPolicy };

@@ -11,3 +11,5 @@ router.post("/policies/accept/:policyId", acceptClaim);
 
 // reject a policy claim
 router.post("/policies/reject/:policyId", rejectClaim);
+
+module.exports = router;
