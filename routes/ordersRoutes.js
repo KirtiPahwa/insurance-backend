@@ -12,4 +12,7 @@ router.post("/policies/accept/:policyId", acceptClaim);
 // reject a policy claim
 router.post("/policies/reject/:policyId", rejectClaim);
 
+// create an order for user side
+router.post("/order/create", createOrder);
+
 module.exports = router;
