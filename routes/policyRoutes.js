@@ -1,10 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const { getPolicyById, getPolicy, createPolicy, deletePolicy, getAllPolicies } = require("../controllers/policies.js");
+const { getPolicyById, getPolicy, createPolicy, deletePolicy, getAllPolicies } = require("../controllers/policyController.js");
 
-// router.get("/policy/:policyId", getPolicyById); // get policy by id
-router.post("/policy/create", createPolicy); // create policy
-
-
+// create policy for admin side
+router.post("/policy/create", createPolicy);
 
