@@ -18,6 +18,6 @@ app.get("/", (req, res) => {
     res.send("Hello World");
 });
 
-app.use("/api/auth", require("./routes/auth"));
+app.use("/api/auth", require("./auth"));
 app.use("/api/policy", require("./routes/policyRoutes"));
 app.use("/api/orders", require("./routes/ordersRoutes"));
