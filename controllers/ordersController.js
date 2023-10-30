@@ -8,7 +8,7 @@ const getAllClaims = (req, res) => {
                 error: "NO orders found"
             });
         }
-        res.json(orders);
+        return res.json(orders);
     });
 }
 
@@ -27,7 +27,7 @@ const acceptClaim = (req, res) => {
                 error: "Failed to accept policy"
             });
         }
-        res.json(updatedPolicy);
+        return res.json(updatedPolicy);
     });
 }
 
@@ -47,7 +47,26 @@ const rejectClaim = (req, res) => {
                 error: "Failed to reject policy"
             });
         }
-        res.json(updatedPolicy);
+        return res.json(updatedPolicy);
+    });
+}
+
+const placeOrder = (req, res) => {
+    // we will recieve the order details in the req.body in form of json which will contain an array of orders
+    // we will loop through the array and save each order in the db
+    const orders = req.body.orders;
+    orders.forEach(order => {
+        const newOrder = new Order(order);
+        newOrder.save((err, order) => {
+            if (err) {
+                return res.status(400).json({
+                    error: "Not able to save order in DB"
+                });
+            }
+        });
+    });
+    return res.json({
+        message: "Order placed successfully"
     });
 }
 
