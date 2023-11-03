@@ -1,18 +1,19 @@
-const express = require("express");
 const policy = require("../models/policy");
 
-const createPolicy = (req, res) => {
+const createPolicy = async (req, res) => {
     // policy data in body
     const newPolicy = new policy(req.body);
     // save to db
-    newPolicy.save((err, policy) => {
-        if (err) {
-            return res.status(400).json({
-                error: "Not able to save policy in DB"
-            });
-        }
-        res.json({ policy });
-    });
-}
+    await newPolicy.save();
+};
 
-module.exports = { createPolicy };
+const allPolicies = async (req, res) => {
+    try {
+        const policies = await policy.find();
+        res.status(200).json(policies);
+    } catch (err) {
+        res.status(500).json({ error: "Error fetching policies" });
+    }
+};
+
+module.exports = { createPolicy, allPolicies };
